@@ -52,7 +52,14 @@ async function searchWeather(cityName) {
   weather.style.display = "block";
 }
 
-searchBtn.addEventListener("click", () => {
+searchBtn.addEventListener("click", (event) => {
+  event.preventDefault();
   searchWeather(searchInput.value);
   searchInput.value = "";
+});
+searchInput.addEventListener("keydown", (event) => {
+  if (event.keyCode === 13) {
+    searchWeather(searchInput.value);
+    searchInput.value = "";
+  }
 });
