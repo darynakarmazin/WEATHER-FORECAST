@@ -105,3 +105,10 @@ body {
 .weather-image {
   font-size: 90px;
 }
+
+.error {
+  color: red;
+  text-align: left;
+  margin-top: 15px;
+  display: none;
+}

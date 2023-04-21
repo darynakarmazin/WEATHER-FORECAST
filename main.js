@@ -3,9 +3,15 @@ const URL = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
 const searchInput = document.querySelector(".seach-box input");
 const searchBtn = document.querySelector(".seach-box button");
+const weather = document.querySelector(".weather");
+const error = document.querySelector(".error");
 
 async function searchWeather(cityName) {
   const response = await fetch(URL + cityName + `&appid=${KEY}`);
+  if (response.status == 404) {
+    error.style.display = "block";
+    weather.style.display = "none";
+  }
   const data = await response.json();
 
   document.querySelector(".weather").innerHTML = `      
@@ -42,6 +48,8 @@ async function searchWeather(cityName) {
   } else if (data.weather[0].main == "Drizzle") {
     weatherIcon.className = "fa-solid fa-cloud-drizzle";
   }
+  error.style.display = "none";
+  weather.style.display = "block";
 }
 
 searchBtn.addEventListener("click", () => {
